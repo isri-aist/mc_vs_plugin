@@ -30,12 +30,12 @@ jobs:
         compiler: ${{ matrix.compiler }}
         build-type: ${{ matrix.build-type }}
         ubuntu: |
-          apt: libmc-rtc-dev
+          apt: libmc-rtc-dev mc-rtc-utils
           apt-mirrors:
             mc-rtc:
               cloudsmith: mc-rtc/head
           ros: |
-            apt: ros-base mc-rtc-tools mc-rtc-msgs
+            apt: ros-base mc-rtc-tools mc-rtc-plugin
     - name: Build and test
       uses: jrl-umi3218/github-actions/build-cmake-project@master
       with:
