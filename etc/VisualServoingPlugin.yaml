@@ -1,0 +1,9 @@
+---
+VisualServoingPlugin:
+  - name: "hand_visual_servoing"
+    twist_topic: "/twist_msg"
+    body: "tool0"
+
+  - name: "head_visual_servoing"
+    twist_topic: "/twist_msg_head"
+    body: "tool0"
