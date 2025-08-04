@@ -17,7 +17,7 @@ find_package(ament_cmake)
 find_package(geometry_msgs REQUIRED)
 
 # Install the plugin configuration
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/etc/VisualServoingPlugin.yaml"
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/etc/VisualServoingPlugin.yaml"
         DESTINATION "${MC_PLUGINS_RUNTIME_INSTALL_PREFIX}/etc")
 
 set(plugin_SRC src/VisualServoingPlugin.cpp)
