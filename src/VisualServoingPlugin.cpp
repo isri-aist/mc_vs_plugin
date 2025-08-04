@@ -86,7 +86,7 @@ void VisualServoingPlugin::before(mc_control::MCGlobalController & controller)
 {
   for(const auto & sensor : vs_bodysensors_)
   {
-    auto s = const_cast<mc_rbdyn::BodySensor &>(controller.robot().bodySensor(sensor.first));
+    auto & s = const_cast<mc_rbdyn::BodySensor &>(controller.robot().bodySensor(sensor.first));
     {
       const std::lock_guard<std::mutex> lock(sensor.second->vel_mutex_);
       s.angularVelocity(sensor.second->vel_bodysensor_.angular());
