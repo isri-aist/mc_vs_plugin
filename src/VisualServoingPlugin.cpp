@@ -1,20 +1,8 @@
 #include "VisualServoingPlugin.h"
 
 #include <mc_control/GlobalPluginMacros.h>
-#include <mc_rbdyn/BodySensor.h>
-#include <mc_rtc/Configuration.h>
 #include <mc_rtc/gui/ArrayLabel.h>
-#include <mc_rtc/gui/StateBuilder.h>
-#include <mc_rtc/log/Logger.h>
-#include <mc_rtc/logging.h>
-#include <SpaceVecAlg/SpaceVecAlg>
-#include <SpaceVecAlg/fwd.h>
-#include <chrono>
-#include <functional>
 #include <mc_rtc_ros/ros.h>
-#include <mutex>
-#include <rclcpp/executors.hpp>
-#include <thread>
 
 namespace mc_plugin
 {

@@ -6,16 +6,12 @@
 
 #include <mc_control/GlobalPlugin.h>
 #include <mc_rbdyn/BodySensor.h>
-#include <mc_rtc/log/Logger.h>
-#include <SpaceVecAlg/SpaceVecAlg>
-#include <SpaceVecAlg/fwd.h>
-#include <geometry_msgs/msg/twist.hpp>
 #include <mc_rtc_ros/ros.h>
+
+#include <geometry_msgs/msg/twist.hpp>
 #include <rclcpp/executor.hpp>
-#include <rclcpp/executors.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/timer.hpp>
-
 namespace mc_plugin
 {
 
