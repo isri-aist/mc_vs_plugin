@@ -8,6 +8,7 @@
 #include <mc_rtc/log/Logger.h>
 #include <mc_rtc/logging.h>
 #include <SpaceVecAlg/SpaceVecAlg>
+#include <SpaceVecAlg/fwd.h>
 #include <chrono>
 #include <functional>
 #include <mc_rtc_ros/ros.h>
@@ -137,7 +138,7 @@ void VisualServoingPlugin::addToLogger(mc_rtc::Logger & log)
 
 VisualServoingPlugin::VisualServoingBodySensor::VisualServoingBodySensor(const std::string & bodyname,
                                                                          const std::string & topic)
-: topic_(topic), bodyname_(bodyname)
+: topic_(topic), bodyname_(bodyname), vel_bodysensor_(sva::MotionVecd::Zero())
 {
 }
 
