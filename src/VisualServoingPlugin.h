@@ -12,6 +12,26 @@
 #include <rclcpp/executor.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/timer.hpp>
+
+#ifdef __linux__
+#  include <sched.h>
+
+void reset_affinity()
+{
+  cpu_set_t cpu_set;
+  CPU_ZERO(&cpu_set);
+  for(unsigned int i = 0; i < std::thread::hardware_concurrency(); i++)
+  {
+    CPU_SET(i, &cpu_set);
+  }
+  int result = sched_setaffinity(0, sizeof(cpu_set_t), &cpu_set);
+  if(result != 0) std::perror("sched_setaffinity");
+}
+#else
+
+void reset_affinity() {}
+#endif
+
 namespace mc_plugin
 {
 
@@ -47,7 +67,7 @@ private:
 
   std::unordered_map<std::string, std::shared_ptr<VisualServoingBodySensor>> vs_bodysensors_;
   rclcpp::Node::SharedPtr node_;
-  rclcpp::executors::MultiThreadedExecutor::SharedPtr executor_;
+  rclcpp::executors::StaticSingleThreadedExecutor::SharedPtr executor_;
   std::thread spin_thread;
 
   void loadConfig(const mc_rtc::Configuration & config);

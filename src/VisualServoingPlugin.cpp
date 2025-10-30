@@ -30,12 +30,13 @@ void VisualServoingPlugin::init(mc_control::MCGlobalController & controller, con
 void VisualServoingPlugin::reset(mc_control::MCGlobalController & controller)
 {
   node_ = rclcpp::Node::make_shared("VisualServoingPlugin");
-  executor_ = rclcpp::executors::MultiThreadedExecutor::make_shared();
+  executor_ = rclcpp::executors::StaticSingleThreadedExecutor::make_shared();
   executor_->add_node(node_);
 
   spin_thread = std::thread(
       [&]
       {
+        reset_affinity();
         std::cout << "[VisualServoingPlugin] Executor spinning..." << std::endl;
         executor_->spin();
         std::cout << "[VisualServoingPlugin] Executor stopped (unexpected)" << std::endl;
@@ -157,6 +158,7 @@ void VisualServoingPlugin::VisualServoingBodySensor::init(rclcpp::Node::SharedPt
 
 void VisualServoingPlugin::VisualServoingBodySensor::callback(const geometry_msgs::msg::Twist & vel)
 {
+  reset_affinity();
   const std::lock_guard<std::mutex> lock(vel_mutex_);
   vel_bodysensor_ = {{vel.angular.x, vel.angular.y, vel.angular.z}, {vel.linear.x, vel.linear.y, vel.linear.z}};
 }
